@@ -1,12 +1,13 @@
+package domain;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class User {
+public class User extends Entity {
 
 	private String userName;
 	private String password;
-	private String type;
+	//private String type;
 	private List<Reader> reader;
 	private List<Watcher> watcher;
 	private double avgPages;
@@ -16,12 +17,25 @@ public class User {
 	//private String avgReader;
 	//private double avgWatcher;
 	private Person person;
+	private List<Role> roles;
+	private List<Reader> readers;
+	private List<Watcher> watchers;
 	
 	public User(){
 		this.reader = new ArrayList<Reader>();
-		this.watcher = new ArrayList<Watcher>();		
+		this.watcher = new ArrayList<Watcher>();
+		roles = new ArrayList<Role>();
+		readers = new ArrayList<Reader>();
+		watchers = new ArrayList<Watcher>();
 	}
 
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -38,13 +52,13 @@ public class User {
 		this.password = password;
 	}
 
-	public String getType() {
+	/*public String getType() {
 		return type;
 	}
 
 	public void setType(String type) {
 		this.type = type;
-	}
+	}*/
 
 	public List<Reader> getReader() {
 		return reader;
@@ -102,6 +116,22 @@ public class User {
 			if(watcher.size() == i){ avgWatcherScore = avgWatcherScore / (double)i;}
 		}
 		return avgWatcherScore;
+	}
+
+	public List<Reader> getReaders() {
+		return readers;
+	}
+
+	public void setReaders(List<Reader> readers) {
+		this.readers = readers;
+	}
+
+	public List<Watcher> getWatchers() {
+		return watchers;
+	}
+
+	public void setWatchers(List<Watcher> watchers) {
+		this.watchers = watchers;
 	}
 	
 	

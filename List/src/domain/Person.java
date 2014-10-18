@@ -1,5 +1,6 @@
+package domain;
 
-public class Person {
+public class Person extends Entity {
 
 	private String firstName;
 	private String surName;
@@ -30,7 +31,4 @@ public class Person {
 	public void setUser(User user) {
 		User = user;
 	}
-	
-	
-	
 }

@@ -3,7 +3,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Hello Urbanowicz! : O");
+		
 		
 	}
 
@@ -23,7 +23,7 @@ public class Main {
  * Levels
  * Secret ranks
  * User ranks
- * Leaderboard
+ * Leader board
  * Plans
  * Reviews (?)
  * Cards (?)
@@ -32,4 +32,6 @@ public class Main {
  * Voice Actors (?)
  * Shop (?)
  * 
+ * Roles & Privileges (?)
+ * Reader and watcher List instead of variable type
  */

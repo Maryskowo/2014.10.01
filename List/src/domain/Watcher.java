@@ -1,5 +1,9 @@
+package domain;
 
-public class Watcher {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Watcher extends Entity {
 
 	private String title;
 	private String type;
@@ -7,6 +11,11 @@ public class Watcher {
 	private int score;
 	private int episodes;
 	private int timeInMinutes;
+	private List<User> users;
+	
+	public Watcher(){
+		users = new ArrayList<User>();
+	}
 	
 	public String getTitle() {
 		return title;
@@ -44,6 +53,11 @@ public class Watcher {
 	public void setTimeInMinutes(int timeInMinutes) {
 		this.timeInMinutes = timeInMinutes;
 	}
-	
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 	
 }

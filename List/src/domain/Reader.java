@@ -1,11 +1,20 @@
+package domain;
 
-public class Reader {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Reader extends Entity {
 
 	private String title;
 	private String type;
 	private String category;
 	private int pages;
 	private int score;
+	private List<User> users;
+	
+	public Reader(){
+		users = new ArrayList<User>();
+	}
 	
 	public String getTitle() {
 		return title;
@@ -37,6 +46,11 @@ public class Reader {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 	
 }
