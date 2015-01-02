@@ -1,21 +1,25 @@
 package repositories.impl;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import domain.Role;
 import domain.User;
 import repositories.IUserRepository;
+import unitofwork.IUnitOfWork;
 
-public class UserRepository implements IUserRepository{
+public class UserRepository 
+extends Repository<User>
+implements IUserRepository{
 
-	Db db;
 
 	
-	public UserRepository(Db db) {
-		super();
-		this.db = db;
+	public UserRepository(Connection connection, IEntityBuilder<User> builder, IUnitOfWork uow) {
+		super(connection,builder, uow);
 	}
-	
+
+
 	@Override
 	public List<User> withRole(Role role) {
 		// TODO Auto-generated method stub
@@ -34,33 +38,41 @@ public class UserRepository implements IUserRepository{
 		return null;
 	}
 
+	
+
 	@Override
-	public void add(User entity) {
-		// TODO Auto-generated method stub
+	protected void setUpUpdateQuery(User entity) throws SQLException {
+		update.setString(1, entity.getLogin());
+		update.setString(2, entity.getPassword());
+		update.setInt(3, entity.getId());
 		
 	}
 
+
 	@Override
-	public void update(User entity) {
-		// TODO Auto-generated method stub
+	protected void setUpInsertQuery(User entity) throws SQLException {
+		insert.setString(1, entity.getLogin());
+		insert.setString(2, entity.getPassword());
 		
 	}
 
-	@Override
-	public void delete(User entity) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public User get(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	protected String getTableName() {
+		return "users";
 	}
 
+
 	@Override
-	public List<User> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	protected String getUpdateQuery() {
+		return 
+				"UPDATE users SET (login,password)=(?,?) WHERE id=?";
+	}
+
+
+	@Override
+	protected String getInsertQuery() {
+		return "INSERT INTO users(login,password)"
+				+ "VALUES(?,?)";
 	}
 }

@@ -5,6 +5,9 @@ import java.util.List;
 
 public class User extends Entity {
 
+	
+	private String login;
+	
 	private String userName;
 	private String password;
 	//private String type;
@@ -132,6 +135,14 @@ public class User extends Entity {
 
 	public void setWatchers(List<Watcher> watchers) {
 		this.watchers = watchers;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 	
 	

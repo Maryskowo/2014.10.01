@@ -1,19 +1,27 @@
 package repositories.impl;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import domain.User;
 import domain.Watcher;
 import repositories.IWatcherRepository;
+import unitofwork.IUnitOfWork;
 
-public class WatcherRepository implements IWatcherRepository{
+public class WatcherRepository
+extends Repository<Watcher> 
+implements IWatcherRepository
+{
 
-	Db db;
 	
-	public WatcherRepository(Db db){
-		this.db = db;
+	
+	public WatcherRepository(Connection connection, IEntityBuilder<Watcher> builder, IUnitOfWork uow) {
+		super(connection,builder, uow);
 	}
+	
+	/*Db db;
 	
 	public void add(Watcher entity) {
 		db.watchers.add(entity);
@@ -62,6 +70,63 @@ public class WatcherRepository implements IWatcherRepository{
 			if(w.getId() == watcherId)
 				return w.getUsers();
 			return new ArrayList<User>();
+	}*/
+	@Override
+	public List<User> bWatcher(Watcher watcher) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> bWatcher(String watcherTitle) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> bWatcher(int watcherId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	//___________________________________________________________________________________
+	
+	@Override
+	protected void setUpUpdateQuery(Watcher entity) throws SQLException {
+		update.setString(1, entity.getTitle());
+		update.setString(2, entity.getCategory());
+		update.setInt(3, entity.getScore());
+		update.setInt(4, entity.getEpisodes());
+		update.setInt(5, entity.getTimeInMinutes());
+		update.setInt(7,  entity.getId());
+		
+	}
+
+	@Override
+	protected void setUpInsertQuery(Watcher entity) throws SQLException {
+		
+		insert.setString(1, entity.getTitle());
+		insert.setString(2, entity.getCategory());
+		insert.setInt(3, entity.getScore());
+		insert.setInt(4, entity.getEpisodes());
+		insert.setInt(5, entity.getTimeInMinutes());
+		
+	}
+
+	@Override
+	protected String getTableName() {
+		return "watchers";
+	}
+
+	@Override
+	protected String getUpdateQuery() {
+		return 
+				"UPDATE watchers SET (title,category,score,episodes,timeInMinutes=(?,?,?,?,?) WHERE id=?";
+	}
+
+	@Override
+	protected String getInsertQuery() {
+		return "INSERT INTO watchers(title,category,score,episodes,timeInMinutes)"
+				+ "VALUES(?,?,?,?,?)";
 	}
 
 }
