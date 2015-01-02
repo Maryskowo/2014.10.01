@@ -93,10 +93,11 @@ implements IWatcherRepository
 	@Override
 	protected void setUpUpdateQuery(Watcher entity) throws SQLException {
 		update.setString(1, entity.getTitle());
-		update.setString(2, entity.getCategory());
-		update.setInt(3, entity.getScore());
-		update.setInt(4, entity.getEpisodes());
-		update.setInt(5, entity.getTimeInMinutes());
+		update.setString(2, entity.getType());
+		update.setString(3, entity.getCategory());
+		update.setInt(4, entity.getScore());
+		update.setInt(5, entity.getEpisodes());
+		update.setInt(6, entity.getTimeInMinutes());
 		update.setInt(7,  entity.getId());
 		
 	}
@@ -105,10 +106,11 @@ implements IWatcherRepository
 	protected void setUpInsertQuery(Watcher entity) throws SQLException {
 		
 		insert.setString(1, entity.getTitle());
-		insert.setString(2, entity.getCategory());
-		insert.setInt(3, entity.getScore());
-		insert.setInt(4, entity.getEpisodes());
-		insert.setInt(5, entity.getTimeInMinutes());
+		insert.setString(2, entity.getType());
+		insert.setString(3, entity.getCategory());
+		insert.setInt(4, entity.getScore());
+		insert.setInt(5, entity.getEpisodes());
+		insert.setInt(6, entity.getTimeInMinutes());
 		
 	}
 
@@ -120,13 +122,13 @@ implements IWatcherRepository
 	@Override
 	protected String getUpdateQuery() {
 		return 
-				"UPDATE watchers SET (title,category,score,episodes,timeInMinutes=(?,?,?,?,?) WHERE id=?";
+				"UPDATE watchers SET (title,type,category,score,episodes,timeInMinutes=(?,?,?,?,?,?) WHERE id=?";
 	}
 
 	@Override
 	protected String getInsertQuery() {
-		return "INSERT INTO watchers(title,category,score,episodes,timeInMinutes)"
-				+ "VALUES(?,?,?,?,?)";
+		return "INSERT INTO watchers(title,type,category,score,episodes,timeInMinutes)"
+				+ "VALUES(?,?,?,?,?,?)";
 	}
 
 }
